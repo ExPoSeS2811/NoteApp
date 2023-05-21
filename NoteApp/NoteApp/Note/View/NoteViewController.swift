@@ -24,6 +24,9 @@ final class NoteViewController: UIViewController {
         return imageView
     }()
     
+    // MARK: - Properties
+    var viewModel: NoteViewModelProtocol?
+    
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,14 +41,15 @@ final class NoteViewController: UIViewController {
     }
     
     // MARK: - Methods
-    func set(note: Note) {
-        textView.text = note.title + " " + note.description
-        guard let imageData = note.image,
-              let image = UIImage(data: imageData)  else { return }
-        attachmentView.image = image
-    }
     
     // MARK: - Private methods
+    private func configure() {
+        textView.text = viewModel?.text
+//        guard let imageData = note.image,
+//              let image = UIImage(data: imageData)  else { return }
+//        attachmentView.image = image
+    }
+    
     private func setupUI() {
         view.addSubview(attachmentView)
         view.addSubview(textView)

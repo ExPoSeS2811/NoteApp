@@ -78,7 +78,8 @@ extension NotesListViewController {
         guard let note = viewModel?.section[indexPath.section].items[indexPath.row] as? Note else { return }
         
         let noteViewController = NoteViewController()
-        noteViewController.set(note: note)
+        let viewModel = NoteViewModel(note: note)
+        noteViewController.viewModel = viewModel
         navigationController?.pushViewController(noteViewController, animated: true)
     }
 }
