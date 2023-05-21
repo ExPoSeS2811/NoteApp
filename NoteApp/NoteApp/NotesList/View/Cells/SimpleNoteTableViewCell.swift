@@ -6,7 +6,7 @@ final class SimpleNoteTableViewCell: UITableViewCell {
     private lazy var containerView: UIView = {
         let view = UIView()
         
-        view.backgroundColor = .systemIndigo
+        view.backgroundColor = UIColor.firstColor
         view.rounded()
         
         return view

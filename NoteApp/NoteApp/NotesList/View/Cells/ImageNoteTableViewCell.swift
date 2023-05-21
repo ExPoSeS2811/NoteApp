@@ -6,7 +6,7 @@ final class ImageNoteTableViewCell: UITableViewCell {
     private lazy var containerView: UIView = {
         let view = UIView()
         
-        view.backgroundColor = .systemIndigo
+        view.backgroundColor = UIColor.secondColor
         view.rounded()
         
         return view
@@ -59,6 +59,9 @@ final class ImageNoteTableViewCell: UITableViewCell {
         containerView.addSubview(titleLabel)
         addSubview(containerView)
         setupConstraints()
+        
+        let color = attachmentView.image?.getPixelColor(pos: CGPoint(x: 10, y: 10))
+        containerView.backgroundColor = color
     }
     
     private func setupConstraints() {
