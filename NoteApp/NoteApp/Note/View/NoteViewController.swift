@@ -52,6 +52,13 @@ final class NoteViewController: UIViewController {
         view.addSubview(textView)
         self.view.backgroundColor = .white
         
+        let recognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(hideKeyboard)
+        )
+        
+        view.addGestureRecognizer(recognizer)
+        
         setupConstraints()
         setImageHeight()
     }
@@ -74,5 +81,9 @@ final class NoteViewController: UIViewController {
         attachmentView.snp.makeConstraints { make in
             make.height.equalTo(height)
         }
+    }
+    
+    @objc private func hideKeyboard() {
+        textView.resignFirstResponder()
     }
 }
