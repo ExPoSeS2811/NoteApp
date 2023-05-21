@@ -11,6 +11,7 @@
 		73D4FC362A1A3B4600695226 /* UIView+addGradient().swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D4FC352A1A3B4600695226 /* UIView+addGradient().swift */; };
 		73D4FC382A1A432400695226 /* UIImage+getPixelColor().swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D4FC372A1A432400695226 /* UIImage+getPixelColor().swift */; };
 		73D4FC3A2A1A49FA00695226 /* UIView+dropShadow().swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D4FC392A1A49FA00695226 /* UIView+dropShadow().swift */; };
+		73D4FC3C2A1A5B4200695226 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D4FC3B2A1A5B4200695226 /* NoteViewController.swift */; };
 		73FB62DD2A19F37D003D1F1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FB62DC2A19F37D003D1F1E /* AppDelegate.swift */; };
 		73FB62E12A19F37D003D1F1E /* NotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FB62E02A19F37D003D1F1E /* NotesListViewController.swift */; };
 		73FB62E62A19F37F003D1F1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73FB62E52A19F37F003D1F1E /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		73D4FC352A1A3B4600695226 /* UIView+addGradient().swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+addGradient().swift"; sourceTree = "<group>"; };
 		73D4FC372A1A432400695226 /* UIImage+getPixelColor().swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+getPixelColor().swift"; sourceTree = "<group>"; };
 		73D4FC392A1A49FA00695226 /* UIView+dropShadow().swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+dropShadow().swift"; sourceTree = "<group>"; };
+		73D4FC3B2A1A5B4200695226 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		73FB62D92A19F37D003D1F1E /* NoteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73FB62DC2A19F37D003D1F1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73FB62E02A19F37D003D1F1E /* NotesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +57,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		73D4FC3D2A1A5B5D00695226 /* Note */ = {
+			isa = PBXGroup;
+			children = (
+				73D4FC3E2A1A5B7000695226 /* View */,
+			);
+			path = Note;
+			sourceTree = "<group>";
+		};
+		73D4FC3E2A1A5B7000695226 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				73D4FC3B2A1A5B4200695226 /* NoteViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		73FB62D02A19F37D003D1F1E = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +99,7 @@
 				73FB62E72A19F37F003D1F1E /* LaunchScreen.storyboard */,
 				73FB62EA2A19F37F003D1F1E /* Info.plist */,
 				73FB63032A1A0550003D1F1E /* TableViewSection.swift */,
+				73D4FC3D2A1A5B5D00695226 /* Note */,
 			);
 			path = NoteApp;
 			sourceTree = "<group>";
@@ -220,6 +239,7 @@
 				73D4FC342A1A3A1600695226 /* UIColor+init().swift in Sources */,
 				73FB62E12A19F37D003D1F1E /* NotesListViewController.swift in Sources */,
 				73FB63042A1A0550003D1F1E /* TableViewSection.swift in Sources */,
+				73D4FC3C2A1A5B4200695226 /* NoteViewController.swift in Sources */,
 				73D4FC3A2A1A49FA00695226 /* UIView+dropShadow().swift in Sources */,
 				73FB62DD2A19F37D003D1F1E /* AppDelegate.swift in Sources */,
 				73FB62F12A19F4BB003D1F1E /* SimpleNoteTableViewCell.swift in Sources */,
