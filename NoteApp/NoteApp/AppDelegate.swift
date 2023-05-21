@@ -10,7 +10,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let window = window {
             let navigationController = UINavigationController()
-            navigationController.viewControllers = [NotesListViewController()]
+            let viewController = NotesListViewController()
+            viewController.viewModel = NotesListViewModel()
+            navigationController.viewControllers = [viewController]
             window.rootViewController = navigationController
             window.makeKeyAndVisible()
         }
