@@ -36,9 +36,9 @@ final class SimpleNoteTableViewCell: UITableViewCell {
     
     // MARK: - Private methods
     private func setupUI() {
-        addSubview(containerView)
         containerView.addSubview(titleLabel)
-            setupConstraints()
+        addSubview(containerView)
+        setupConstraints()
     }
     
     private func setupConstraints() {

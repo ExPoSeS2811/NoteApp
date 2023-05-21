@@ -1,3 +1,4 @@
+import SnapKit
 import UIKit
 
 final class ImageNoteTableViewCell: UITableViewCell {
@@ -46,9 +47,9 @@ final class ImageNoteTableViewCell: UITableViewCell {
     
     // MARK: - Private methods
     private func setupUI() {
-        addSubview(containerView)
         containerView.addSubview(attachmentView)
         containerView.addSubview(titleLabel)
+        addSubview(containerView)
         setupConstraints()
     }
     
