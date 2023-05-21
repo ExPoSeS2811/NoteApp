@@ -3,13 +3,25 @@ import UIKit
 
 final class ImageNoteTableViewCell: UITableViewCell {
     // MARK: - GUI Variables
+    private lazy var wrapperContainerView = UIView()
+    
     private lazy var containerView: UIView = {
         let view = UIView()
         
-        view.backgroundColor = UIColor.secondColor
+        view.backgroundColor = UIColor.color
         view.rounded()
         
         return view
+    }()
+    
+    private lazy var blurView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+        let viewEffect = UIVisualEffectView(effect: blurEffect)
+        
+        viewEffect.layer.masksToBounds = true
+        viewEffect.rounded()
+        
+        return viewEffect
     }()
     
     private lazy var attachmentView: UIImageView = {
@@ -55,19 +67,31 @@ final class ImageNoteTableViewCell: UITableViewCell {
     
     // MARK: - Private methods
     private func setupUI() {
+        containerView.addSubview(blurView)
         containerView.addSubview(attachmentView)
         containerView.addSubview(titleLabel)
-        addSubview(containerView)
+        wrapperContainerView.addSubview(containerView)
+        addSubview(wrapperContainerView)
         setupConstraints()
         
         let color = attachmentView.image?.getPixelColor(pos: CGPoint(x: 10, y: 10))
         containerView.backgroundColor = color
+        wrapperContainerView.dropShadow(color: color ?? .black)
+        
     }
     
     private func setupConstraints() {
-        containerView.snp.makeConstraints { make in
+        wrapperContainerView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(5)
             make.leading.trailing.equalToSuperview().inset(10)
+        }
+        
+        containerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        blurView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
         attachmentView.snp.makeConstraints { make in

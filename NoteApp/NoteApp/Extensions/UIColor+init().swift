@@ -1,8 +1,7 @@
 import UIKit
 
 extension UIColor {
-    static let firstColor = UIColor(hex: "c5bac4")
-    static let secondColor = UIColor(hex: "dedcdc")
+    static let color = UIColor(hex: "c3c4ff")
     
     convenience init(hex: String, alpha: CGFloat = 1.0) {
         var hexString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

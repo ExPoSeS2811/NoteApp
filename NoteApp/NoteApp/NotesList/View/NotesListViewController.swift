@@ -12,6 +12,7 @@ class NotesListViewController: UITableViewController {
         title = "Notes"
         
         setupTableView()
+        setupToolBar()
     }
     
     // MARK: - Private methods
@@ -20,6 +21,24 @@ class NotesListViewController: UITableViewController {
         tableView.register(ImageNoteTableViewCell.self, forCellReuseIdentifier: "ImageNoteTableViewCell")
         
         tableView.separatorStyle = .none
+    }
+    
+    private func setupToolBar() {
+        let addButton = UIBarButtonItem(
+            title: "Add note",
+            style: .done,
+            target: self,
+            action: #selector(addAction)
+        )
+        
+        let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
+        setToolbarItems([spacing, addButton], animated: true)
+        navigationController?.isToolbarHidden = false
+    }
+    
+    @objc private func addAction() {
+        // TODO: Add action
+        print("add action")
     }
 }
 

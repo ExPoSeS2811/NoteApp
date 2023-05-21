@@ -3,10 +3,18 @@ import UIKit
 
 final class SimpleNoteTableViewCell: UITableViewCell {
     // MARK: - GUI Variables
+    private lazy var wrapperContainerView: UIView = {
+        let view = UIView()
+        
+        view.dropShadow(color: UIColor.color)
+        
+        return view
+    }()
+    
     private lazy var containerView: UIView = {
         let view = UIView()
         
-        view.backgroundColor = UIColor.firstColor
+        view.backgroundColor = UIColor.color
         view.rounded()
         
         return view
@@ -42,14 +50,19 @@ final class SimpleNoteTableViewCell: UITableViewCell {
     // MARK: - Private methods
     private func setupUI() {
         containerView.addSubview(titleLabel)
-        addSubview(containerView)
+        wrapperContainerView.addSubview(containerView)
+        addSubview(wrapperContainerView)
         setupConstraints()
     }
     
     private func setupConstraints() {
-        containerView.snp.makeConstraints { make in
+        wrapperContainerView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(5)
             make.leading.trailing.equalToSuperview().inset(10)
+        }
+        
+        containerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints { make in
