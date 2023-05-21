@@ -6,10 +6,9 @@ final class NoteViewController: UIViewController {
     private lazy var textView: UITextView = {
         let textView = UITextView()
         
-        textView.text = "Mock text"
-        
         textView.layer.borderColor = UIColor.lightGray.cgColor
-        textView.layer.borderWidth = 1
+        textView.rounded()
+        textView.font = .boldSystemFont(ofSize: 14)
         
         return textView
     }()
@@ -59,8 +58,10 @@ final class NoteViewController: UIViewController {
         
         view.addGestureRecognizer(recognizer)
         
+        textView.layer.borderWidth = textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? 1 : 0
         setupConstraints()
         setImageHeight()
+        setupBars()
     }
     
     
@@ -83,7 +84,33 @@ final class NoteViewController: UIViewController {
         }
     }
     
+    @objc private func saveAction() {
+        // TODO: Save action
+
+        print("Save")
+    }
+    
+    @objc private func deleteAction() {
+        // TODO: Delete action
+        print("Delete")
+    }
+    
     @objc private func hideKeyboard() {
         textView.resignFirstResponder()
+    }
+    
+    private func setupBars() {
+        let trashButton = UIBarButtonItem(
+            barButtonSystemItem: .trash,
+            target: self,
+            action: #selector(deleteAction)
+        )
+        setToolbarItems([trashButton], animated: true)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .save,
+            target: self,
+            action: #selector(saveAction)
+        )
     }
 }
