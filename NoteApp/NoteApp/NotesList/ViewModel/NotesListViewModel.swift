@@ -22,7 +22,7 @@ final class NotesListViewModel: NotesListViewModelProtocol {
     
     func getNotes() {
         let notes = NotePersistent.fetchAll()
-        print(notes)
+        section = []
         
         let groupedObjects = notes.reduce(into: [Date: [Note]]()) { result, note in
             let date = Calendar.current.startOfDay(for: note.date)

@@ -16,7 +16,6 @@ final class NoteViewController: UIViewController {
     private lazy var attachmentView: UIImageView = {
         let imageView = UIImageView()
         
-        imageView.image = UIImage(named: "mockImage")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         imageView.rounded()
@@ -31,6 +30,7 @@ final class NoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configure()
         setupUI()
     }
     
@@ -94,6 +94,7 @@ final class NoteViewController: UIViewController {
     }
     
     @objc private func deleteAction() {
+        viewModel?.delete()
         navigationController?.popViewController(animated: true)
     }
     

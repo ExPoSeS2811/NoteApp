@@ -12,11 +12,12 @@ class NotesListViewController: UITableViewController {
         
         setupTableView()
         setupToolBar()
+        registerObserver()
         
         viewModel?.reloadTable = { [weak self] in
-            tableView.reloadData()
+            self?.tableView.reloadData()
         }
-    }
+    } 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -68,6 +69,10 @@ class NotesListViewController: UITableViewController {
 extension NotesListViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel?.section.count ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        viewModel?.section[section].title
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
