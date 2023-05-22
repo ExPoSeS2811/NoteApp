@@ -7,6 +7,7 @@ final class NoteViewController: UIViewController {
         let textView = UITextView()
         
         textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.delegate = self
         textView.rounded()
         textView.font = .boldSystemFont(ofSize: 14)
         
@@ -26,10 +27,15 @@ final class NoteViewController: UIViewController {
     // MARK: - Properties
     var viewModel: NoteViewModelProtocol?
     
+    let saveButton = UIBarButtonItem(
+        barButtonSystemItem: .save,
+        target: self,
+        action: #selector(saveAction)
+    )
+    
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configure()
         setupUI()
     }
@@ -43,11 +49,15 @@ final class NoteViewController: UIViewController {
     // MARK: - Methods
     
     // MARK: - Private methods
+    private func checkEnabledDeleteButton() -> Bool {
+        return !textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+    
     private func configure() {
         textView.text = viewModel?.text
-//        guard let imageData = note.image,
-//              let image = UIImage(data: imageData)  else { return }
-//        attachmentView.image = image
+        //        guard let imageData = note.image,
+        //              let image = UIImage(data: imageData)  else { return }
+        //        attachmentView.image = image
     }
     
     private func setupUI() {
@@ -89,7 +99,7 @@ final class NoteViewController: UIViewController {
     }
     
     @objc private func saveAction() {
-        viewModel?.save(with: textView.text)
+        viewModel?.save(with: textView.text.trimmingCharacters(in: .whitespacesAndNewlines))
         navigationController?.popViewController(animated: true)
     }
     
@@ -108,12 +118,17 @@ final class NoteViewController: UIViewController {
             target: self,
             action: #selector(deleteAction)
         )
+        
+        trashButton.isEnabled = checkEnabledDeleteButton()
         setToolbarItems([trashButton], animated: true)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .save,
-            target: self,
-            action: #selector(saveAction)
-        )
+        saveButton.isEnabled = false
+        navigationItem.rightBarButtonItem = saveButton
+    }
+}
+
+extension NoteViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        saveButton.isEnabled = true
     }
 }
