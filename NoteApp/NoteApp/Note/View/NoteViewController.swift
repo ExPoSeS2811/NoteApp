@@ -49,9 +49,6 @@ final class NoteViewController: UIViewController {
     // MARK: - Methods
     
     // MARK: - Private methods
-    private func checkEnabledDeleteButton() -> Bool {
-        return !textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-    }
     
     private func configure() {
         textView.text = viewModel?.text
@@ -119,7 +116,8 @@ final class NoteViewController: UIViewController {
             action: #selector(deleteAction)
         )
         
-        trashButton.isEnabled = checkEnabledDeleteButton()
+        trashButton.isEnabled = !textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+
         setToolbarItems([trashButton], animated: true)
         
         saveButton.isEnabled = false
