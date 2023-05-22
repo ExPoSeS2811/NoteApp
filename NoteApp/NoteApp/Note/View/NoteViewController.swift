@@ -89,14 +89,12 @@ final class NoteViewController: UIViewController {
     }
     
     @objc private func saveAction() {
-        // TODO: Save action
-
-        print("Save")
+        viewModel?.save(with: textView.text)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func deleteAction() {
-        // TODO: Delete action
-        print("Delete")
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func hideKeyboard() {

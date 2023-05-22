@@ -2,17 +2,25 @@ import Foundation
 
 protocol NotesListViewModelProtocol {
     var section: [TableViewSection] { get }
+    var reloadTable: (() -> Void)? { get set }
     
+    func getNotes()
 }
 
 final class NotesListViewModel: NotesListViewModelProtocol {
-    private(set) var section: [TableViewSection] = []
+    var reloadTable: (() -> Void)?
+    
+    private(set) var section: [TableViewSection] = [] {
+        didSet {
+            reloadTable?()
+        }
+    }
     
     init() {
         getNotes()
     }
     
-    private func getNotes() {
+    func getNotes() {
         let notes = NotePersistent.fetchAll()
         print(notes)
         
