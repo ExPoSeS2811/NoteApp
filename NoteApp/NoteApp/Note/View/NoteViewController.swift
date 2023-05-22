@@ -16,7 +16,6 @@ final class NoteViewController: UIViewController {
     private lazy var attachmentView: UIImageView = {
         let imageView = UIImageView()
         
-        imageView.image = UIImage(named: "mock")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         imageView.rounded()
@@ -24,10 +23,14 @@ final class NoteViewController: UIViewController {
         return imageView
     }()
     
+    // MARK: - Properties
+    var viewModel: NoteViewModelProtocol?
+    
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configure()
         setupUI()
     }
     
@@ -38,14 +41,15 @@ final class NoteViewController: UIViewController {
     }
     
     // MARK: - Methods
-    func set(note: Note) {
-        textView.text = note.title + " " + note.description
-        guard let imageData = note.image,
-              let image = UIImage(data: imageData)  else { return }
-        attachmentView.image = image
-    }
     
     // MARK: - Private methods
+    private func configure() {
+        textView.text = viewModel?.text
+//        guard let imageData = note.image,
+//              let image = UIImage(data: imageData)  else { return }
+//        attachmentView.image = image
+    }
+    
     private func setupUI() {
         view.addSubview(attachmentView)
         view.addSubview(textView)
@@ -85,14 +89,13 @@ final class NoteViewController: UIViewController {
     }
     
     @objc private func saveAction() {
-        // TODO: Save action
-
-        print("Save")
+        viewModel?.save(with: textView.text)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func deleteAction() {
-        // TODO: Delete action
-        print("Delete")
+        viewModel?.delete()
+        navigationController?.popViewController(animated: true)
     }
         
     @objc private func addImageAction() {

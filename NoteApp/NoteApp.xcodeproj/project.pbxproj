@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		738AC9012A1A72B500714693 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 738AC8FF2A1A72B500714693 /* Model.xcdatamodeld */; };
+		738AC9042A1A910000714693 /* NoteEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AC9022A1A910000714693 /* NoteEntity+CoreDataClass.swift */; };
+		738AC9052A1A910000714693 /* NoteEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AC9032A1A910000714693 /* NoteEntity+CoreDataProperties.swift */; };
+		738AC9072A1A92A000714693 /* NotePersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AC9062A1A92A000714693 /* NotePersistent.swift */; };
+		738AC9092A1A938A00714693 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AC9082A1A938A00714693 /* NoteViewModel.swift */; };
 		73D4FC342A1A3A1600695226 /* UIColor+init().swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D4FC332A1A3A1600695226 /* UIColor+init().swift */; };
 		73D4FC362A1A3B4600695226 /* UIView+addGradient().swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D4FC352A1A3B4600695226 /* UIView+addGradient().swift */; };
 		73D4FC382A1A432400695226 /* UIImage+getPixelColor().swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D4FC372A1A432400695226 /* UIImage+getPixelColor().swift */; };
@@ -26,6 +31,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		738AC9002A1A72B500714693 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		738AC9022A1A910000714693 /* NoteEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		738AC9032A1A910000714693 /* NoteEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		738AC9062A1A92A000714693 /* NotePersistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePersistent.swift; sourceTree = "<group>"; };
+		738AC9082A1A938A00714693 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
 		73D4FC332A1A3A1600695226 /* UIColor+init().swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+init().swift"; sourceTree = "<group>"; };
 		73D4FC352A1A3B4600695226 /* UIView+addGradient().swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+addGradient().swift"; sourceTree = "<group>"; };
 		73D4FC372A1A432400695226 /* UIImage+getPixelColor().swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+getPixelColor().swift"; sourceTree = "<group>"; };
@@ -57,10 +67,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		738AC8FE2A1A724200714693 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				738AC9022A1A910000714693 /* NoteEntity+CoreDataClass.swift */,
+				738AC9032A1A910000714693 /* NoteEntity+CoreDataProperties.swift */,
+				738AC8FF2A1A72B500714693 /* Model.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		738AC90A2A1A939000714693 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				738AC9082A1A938A00714693 /* NoteViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		73D4FC3D2A1A5B5D00695226 /* Note */ = {
 			isa = PBXGroup;
 			children = (
 				73D4FC3E2A1A5B7000695226 /* View */,
+				738AC90A2A1A939000714693 /* ViewModel */,
 			);
 			path = Note;
 			sourceTree = "<group>";
@@ -93,13 +122,15 @@
 			isa = PBXGroup;
 			children = (
 				73FB62DC2A19F37D003D1F1E /* AppDelegate.swift */,
+				73FB63032A1A0550003D1F1E /* TableViewSection.swift */,
+				738AC9062A1A92A000714693 /* NotePersistent.swift */,
 				73FB62FF2A1A0423003D1F1E /* NotesList */,
+				73D4FC3D2A1A5B5D00695226 /* Note */,
 				73FB62F42A19F5AB003D1F1E /* Extensions */,
 				73FB62E52A19F37F003D1F1E /* Assets.xcassets */,
 				73FB62E72A19F37F003D1F1E /* LaunchScreen.storyboard */,
 				73FB62EA2A19F37F003D1F1E /* Info.plist */,
-				73FB63032A1A0550003D1F1E /* TableViewSection.swift */,
-				73D4FC3D2A1A5B5D00695226 /* Note */,
+				738AC8FE2A1A724200714693 /* CoreData */,
 			);
 			path = NoteApp;
 			sourceTree = "<group>";
@@ -238,14 +269,19 @@
 			files = (
 				73D4FC342A1A3A1600695226 /* UIColor+init().swift in Sources */,
 				73FB62E12A19F37D003D1F1E /* NotesListViewController.swift in Sources */,
+				738AC9092A1A938A00714693 /* NoteViewModel.swift in Sources */,
 				73FB63042A1A0550003D1F1E /* TableViewSection.swift in Sources */,
+				738AC9012A1A72B500714693 /* Model.xcdatamodeld in Sources */,
 				73D4FC3C2A1A5B4200695226 /* NoteViewController.swift in Sources */,
+				738AC9072A1A92A000714693 /* NotePersistent.swift in Sources */,
 				73D4FC3A2A1A49FA00695226 /* UIView+dropShadow().swift in Sources */,
+				738AC9042A1A910000714693 /* NoteEntity+CoreDataClass.swift in Sources */,
 				73FB62DD2A19F37D003D1F1E /* AppDelegate.swift in Sources */,
 				73FB62F12A19F4BB003D1F1E /* SimpleNoteTableViewCell.swift in Sources */,
 				73D4FC362A1A3B4600695226 /* UIView+addGradient().swift in Sources */,
 				73FB62F62A19F5C8003D1F1E /* UIView+rounded().swift in Sources */,
 				73FB63012A1A044B003D1F1E /* NotesListViewModel.swift in Sources */,
+				738AC9052A1A910000714693 /* NoteEntity+CoreDataProperties.swift in Sources */,
 				73FB62F32A19F4C5003D1F1E /* ImageNoteTableViewCell.swift in Sources */,
 				73FB62FE2A1A03D1003D1F1E /* Note.swift in Sources */,
 				73D4FC382A1A432400695226 /* UIImage+getPixelColor().swift in Sources */,
@@ -475,6 +511,19 @@
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		738AC8FF2A1A72B500714693 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				738AC9002A1A72B500714693 /* Model.xcdatamodel */,
+			);
+			currentVersion = 738AC9002A1A72B500714693 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 73FB62D12A19F37D003D1F1E /* Project object */;
 }
