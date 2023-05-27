@@ -89,7 +89,7 @@ final class NoteViewController: UIViewController {
     }
     
     private func setImageHeight() {
-        let height = attachmentView.image != nil ? 200 : 0
+        let height = attachmentView.image != nil ? 300 : 0
         attachmentView.snp.makeConstraints { make in
             make.height.equalTo(height)
         }
@@ -103,6 +103,15 @@ final class NoteViewController: UIViewController {
     @objc private func deleteAction() {
         viewModel?.delete()
         navigationController?.popViewController(animated: true)
+    }
+        
+    @objc private func addImageAction() {
+        // TODO: add image action
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
     }
     
     @objc private func hideKeyboard() {
@@ -118,7 +127,16 @@ final class NoteViewController: UIViewController {
         
         trashButton.isEnabled = !textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
 
-        setToolbarItems([trashButton], animated: true)
+        let addImage = UIBarButtonItem(
+            title: "Add image",
+            style: .done,
+            target: self,
+            action: #selector(addImageAction)
+        )
+        
+        let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
+        
+        setToolbarItems([trashButton, spacing, addImage], animated: true)
         
         saveButton.isEnabled = false
         navigationItem.rightBarButtonItem = saveButton
@@ -128,5 +146,19 @@ final class NoteViewController: UIViewController {
 extension NoteViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         saveButton.isEnabled = true
+    }
+}
+
+extension NoteViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        var chosenImage = UIImage()
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            chosenImage = image
+        } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            chosenImage = image
+        }
+        
+        attachmentView.image = chosenImage
+        picker.dismiss(animated: true)
     }
 }
