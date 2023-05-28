@@ -2,6 +2,7 @@ import UIKit
 
 protocol NoteViewModelProtocol {
     var text: String { get }
+    var image: UIImage? { get }
     
     func save(with text: String, and image: UIImage?, imageName: String?)
     func delete()
@@ -13,12 +14,17 @@ final class NoteViewModel: NoteViewModelProtocol {
         return (note?.title ?? "") + "\n\n" + (note?.description ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
+    var image: UIImage? {
+        guard let url = note?.imageURL else { return nil }
+        return FileManagerPersistent.read(from: url)
+    }
+    
     init(note: Note?) {
         self.note = note
     }
     
     func save(with text: String, and image: UIImage?, imageName: String?) {
-        var url: URL?
+        var url: URL? = note?.imageURL
         
         if let image = image,
            let name = imageName  {
