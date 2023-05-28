@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		735F01572A23A6550068D1DE /* FileManagerPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735F01562A23A6550068D1DE /* FileManagerPersistent.swift */; };
 		738AC9012A1A72B500714693 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 738AC8FF2A1A72B500714693 /* Model.xcdatamodeld */; };
 		738AC9042A1A910000714693 /* NoteEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AC9022A1A910000714693 /* NoteEntity+CoreDataClass.swift */; };
 		738AC9052A1A910000714693 /* NoteEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AC9032A1A910000714693 /* NoteEntity+CoreDataProperties.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		735F01562A23A6550068D1DE /* FileManagerPersistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerPersistent.swift; sourceTree = "<group>"; };
 		738AC9002A1A72B500714693 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		738AC9022A1A910000714693 /* NoteEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		738AC9032A1A910000714693 /* NoteEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				73FB62DC2A19F37D003D1F1E /* AppDelegate.swift */,
 				73FB63032A1A0550003D1F1E /* TableViewSection.swift */,
 				738AC9062A1A92A000714693 /* NotePersistent.swift */,
+				735F01562A23A6550068D1DE /* FileManagerPersistent.swift */,
 				73FB62FF2A1A0423003D1F1E /* NotesList */,
 				73D4FC3D2A1A5B5D00695226 /* Note */,
 				73FB62F42A19F5AB003D1F1E /* Extensions */,
@@ -282,6 +285,7 @@
 				73FB62F62A19F5C8003D1F1E /* UIView+rounded().swift in Sources */,
 				73FB63012A1A044B003D1F1E /* NotesListViewModel.swift in Sources */,
 				738AC9052A1A910000714693 /* NoteEntity+CoreDataProperties.swift in Sources */,
+				735F01572A23A6550068D1DE /* FileManagerPersistent.swift in Sources */,
 				73FB62F32A19F4C5003D1F1E /* ImageNoteTableViewCell.swift in Sources */,
 				73FB62FE2A1A03D1003D1F1E /* Note.swift in Sources */,
 				73D4FC382A1A432400695226 /* UIImage+getPixelColor().swift in Sources */,

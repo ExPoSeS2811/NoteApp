@@ -34,6 +34,7 @@ final class NoteViewController: UIViewController {
     )
     
     private let imageHeight = 300
+    private var imageName: String?
     
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -98,7 +99,7 @@ final class NoteViewController: UIViewController {
     }
     
     @objc private func saveAction() {
-        viewModel?.save(with: textView.text.trimmingCharacters(in: .whitespacesAndNewlines))
+        viewModel?.save(with: textView.text.trimmingCharacters(in: .whitespacesAndNewlines), and: attachmentView.image, imageName: imageName)
         navigationController?.popViewController(animated: true)
     }
     
@@ -159,6 +160,10 @@ extension NoteViewController: UIImagePickerControllerDelegate & UINavigationCont
         } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             chosenImage = image
         }
+        
+        guard let url = info[.imageURL] as? URL else { return }
+        imageName = url.lastPathComponent
+
         attachmentView.image = chosenImage
         updateImageHeight()
         picker.dismiss(animated: true)
