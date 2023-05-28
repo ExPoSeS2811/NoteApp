@@ -33,6 +33,8 @@ final class NoteViewController: UIViewController {
         action: #selector(saveAction)
     )
     
+    private let imageHeight = 300
+    
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,13 +73,14 @@ final class NoteViewController: UIViewController {
         
         textView.layer.borderWidth = textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? 1 : 0
         setupConstraints()
-        setImageHeight()
         setupBars()
     }
     
     
     private func setupConstraints() {
         attachmentView.snp.makeConstraints { make in
+            let height = attachmentView.image != nil ? imageHeight : 0
+            make.height.equalTo(height)
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
         }
         
@@ -88,10 +91,9 @@ final class NoteViewController: UIViewController {
         }
     }
     
-    private func setImageHeight() {
-        let height = attachmentView.image != nil ? 300 : 0
-        attachmentView.snp.makeConstraints { make in
-            make.height.equalTo(height)
+    private func updateImageHeight() {
+        attachmentView.snp.updateConstraints { make in
+            make.height.equalTo(imageHeight)
         }
     }
     
@@ -157,8 +159,8 @@ extension NoteViewController: UIImagePickerControllerDelegate & UINavigationCont
         } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             chosenImage = image
         }
-        
         attachmentView.image = chosenImage
+        updateImageHeight()
         picker.dismiss(animated: true)
     }
 }
