@@ -27,11 +27,8 @@ final class NoteViewController: UIViewController {
     // MARK: - Properties
     var viewModel: NoteViewModelProtocol?
     
-    let saveButton = UIBarButtonItem(
-        barButtonSystemItem: .save,
-        target: self,
-        action: #selector(saveAction)
-    )
+    private let imageHeight = 300
+    private var imageName: String?
     
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -52,9 +49,7 @@ final class NoteViewController: UIViewController {
     
     private func configure() {
         textView.text = viewModel?.text
-        //        guard let imageData = note.image,
-        //              let image = UIImage(data: imageData)  else { return }
-        //        attachmentView.image = image
+        attachmentView.image = viewModel?.image
     }
     
     private func setupUI() {
@@ -71,13 +66,14 @@ final class NoteViewController: UIViewController {
         
         textView.layer.borderWidth = textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? 1 : 0
         setupConstraints()
-        setImageHeight()
         setupBars()
     }
     
     
     private func setupConstraints() {
         attachmentView.snp.makeConstraints { make in
+            let height = attachmentView.image != nil ? imageHeight : 0
+            make.height.equalTo(height)
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
         }
         
@@ -88,15 +84,14 @@ final class NoteViewController: UIViewController {
         }
     }
     
-    private func setImageHeight() {
-        let height = attachmentView.image != nil ? 300 : 0
-        attachmentView.snp.makeConstraints { make in
-            make.height.equalTo(height)
+    private func updateImageHeight() {
+        attachmentView.snp.updateConstraints { make in
+            make.height.equalTo(imageHeight)
         }
     }
     
     @objc private func saveAction() {
-        viewModel?.save(with: textView.text.trimmingCharacters(in: .whitespacesAndNewlines))
+        viewModel?.save(with: textView.text.trimmingCharacters(in: .whitespacesAndNewlines), and: attachmentView.image, imageName: imageName)
         navigationController?.popViewController(animated: true)
     }
     
@@ -119,6 +114,12 @@ final class NoteViewController: UIViewController {
     }
     
     private func setupBars() {
+        let saveButton = UIBarButtonItem(
+            barButtonSystemItem: .save,
+            target: self,
+            action: #selector(saveAction)
+        )
+        
         let trashButton = UIBarButtonItem(
             barButtonSystemItem: .trash,
             target: self,
@@ -138,14 +139,13 @@ final class NoteViewController: UIViewController {
         
         setToolbarItems([trashButton, spacing, addImage], animated: true)
         
-        saveButton.isEnabled = false
         navigationItem.rightBarButtonItem = saveButton
     }
 }
 
 extension NoteViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        saveButton.isEnabled = true
+//        saveButton.isEnabled = true
     }
 }
 
@@ -158,7 +158,12 @@ extension NoteViewController: UIImagePickerControllerDelegate & UINavigationCont
             chosenImage = image
         }
         
+        guard let url = info[.imageURL] as? URL else { return }
+        imageName = url.lastPathComponent
+
+//        saveButton.isEnabled = true
         attachmentView.image = chosenImage
+        updateImageHeight()
         picker.dismiss(animated: true)
     }
 }
