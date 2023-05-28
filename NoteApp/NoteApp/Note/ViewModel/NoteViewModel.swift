@@ -18,9 +18,11 @@ final class NoteViewModel: NoteViewModelProtocol {
     }
     
     func save(with text: String, and image: UIImage?, imageName: String?) {
+        var url: URL?
+        
         if let image = image,
            let name = imageName  {
-            FileManagerPersistent.save(image, with: name)
+            url = FileManagerPersistent.save(image, with: name)
         }
         
         let date = note?.date ?? Date()
@@ -30,13 +32,18 @@ final class NoteViewModel: NoteViewModelProtocol {
             title: title,
             description: description,
             date: date,
-            imageURL: nil
+            imageURL: url
         )
         NotePersistent.save(note)
     }
     
     func delete() {
         guard let note = note else { return }
+        
+        if let url = note.imageURL {
+            FileManagerPersistent.delete(from: url)
+        }
+        
         NotePersistent.delete(note)
     }
     

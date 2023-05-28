@@ -19,6 +19,15 @@ final class FileManagerPersistent {
         return UIImage(contentsOfFile: url.path)
     }
     
+    static func delete(from url: URL) {
+        do {
+            try FileManager.default.removeItem(at: url)
+            print("Deleted image")
+        } catch let error {
+            print(error)
+        }
+    }
+    
     private static func getDocumentDirectory() -> URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }

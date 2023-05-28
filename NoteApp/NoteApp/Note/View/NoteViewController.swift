@@ -164,6 +164,7 @@ extension NoteViewController: UIImagePickerControllerDelegate & UINavigationCont
         guard let url = info[.imageURL] as? URL else { return }
         imageName = url.lastPathComponent
 
+        saveButton.isEnabled = true
         attachmentView.image = chosenImage
         updateImageHeight()
         picker.dismiss(animated: true)
